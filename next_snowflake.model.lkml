@@ -8,6 +8,8 @@ include: "*.dashboard"
 
 explore: t8002_contentview {}
 
+explore: t8001_user_crossref {}
+
 # - explore: t1025_reg_prod_cid_title
 
 # - explore: t3027_cid_day
@@ -16,7 +18,7 @@ explore: t8002_contentview {}
 
 # - explore: t3029_cid_all_titles_day
 
-# - explore: t8001_user_crossref
+# -explore: t8001_user_crossref
 
 # - explore: t8001_user_crossref_test
 
