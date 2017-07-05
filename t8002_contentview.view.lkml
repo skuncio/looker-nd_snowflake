@@ -120,6 +120,12 @@ view: t8002_contentview {
     sql: ${TABLE}.c8002_datetime ;;
   }
 
+  dimension: datetime {
+    group_label: "c8002_datetime"
+    sql: ${TABLE}.c8002_datetime ;;
+  }
+
+
   dimension: c8002_dcc_id {
     type: string
     sql: ${TABLE}.C8002_DCC_ID ;;
