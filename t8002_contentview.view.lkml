@@ -372,7 +372,12 @@ view: t8002_contentview {
     sql: ${c8002_video_duration} ;;
   }
 
-  measure: average_Video_duration {
+  measure: sum_duration {
+    type: sum
+    sql: ${c8002_video_duration} ;;
+  }
+
+  measure: average_video_duration {
 #    alias: [average_duration]
     type: average
     sql: ${c8002_video_duration} ;;
@@ -382,8 +387,27 @@ view: t8002_contentview {
     }
   }
 
+  measure: sum_video_duration {
+#    alias: [average_duration]
+    type: sum
+    sql: ${c8002_video_duration} ;;
+    filters: {
+      field: c8002_action
+      value: "VIDEOVIEW"
+    }
+  }
+
   measure: average_page_duration {
     type: average
+    sql: ${c8002_video_duration} ;;
+    filters: {
+      field: c8002_action
+      value: "PAGEVIEW"
+    }
+  }
+
+  measure: sum_page_duration {
+    type: sum
     sql: ${c8002_video_duration} ;;
     filters: {
       field: c8002_action
