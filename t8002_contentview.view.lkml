@@ -335,8 +335,68 @@ view: t8002_contentview {
     sql: ${TABLE}.C8002_WIFI ;;
   }
 
+
+  dimension: latitude_longitude {
+    alias: [view_location]
+    view_label: "Location"
+    type: location
+    sql_latitude: ${c8002_lat} ;;
+    sql_longitude: %${c8002_lon} ;;
+  }
+
   measure: count {
     type: count
     drill_fields: []
+  }
+
+  measure: total_page_views {
+    type: count
+
+    filters: {
+      field: c8002_action
+      value: "PAGEVIEW"
+    }
+  }
+
+  measure: total_video_views {
+    type: count
+
+    filters: {
+      field: c8002_action
+      value: "VIDEOVIEW"
+    }
+  }
+
+  measure: average_Video_duration {
+    type: average
+    sql: ${c8002_video_duration} ;;
+    filters: {
+      field: c8002_action
+      value: "VIDEOVIEW"
+    }
+  }
+
+  measure: average_page_duration {
+    type: average
+    sql: ${c8002_video_duration} ;;
+    filters: {
+      field: c8002_action
+      value: "PAGEVIEW"
+    }
+  }
+
+  measure: distinct_users {
+    view_label: "User"
+    type: count_distinct
+    value_format: "[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0"
+    sql: ${c8002_nxtu_or_did} ;;
+#    approximate: yes
+  }
+
+  measure: distinct_content {
+    type: count_distinct
+    value_format: "[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0"
+    sql: ${c8002_cid} ;;
+#    approximate: yes
   }
 }
