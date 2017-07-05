@@ -367,7 +367,13 @@ view: t8002_contentview {
     }
   }
 
+  measure: average_duration {
+    type: average
+    sql: ${c8002_video_duration} ;;
+  }
+
   measure: average_Video_duration {
+#    alias: [average_duration]
     type: average
     sql: ${c8002_video_duration} ;;
     filters: {
