@@ -10,6 +10,8 @@ explore: t8002_contentview {}
 
 explore: t8001_user_crossref {}
 
+explore: t4007_dashboard_yesterday {}
+
 # - explore: t1025_reg_prod_cid_title
 
 # - explore: t3027_cid_day
