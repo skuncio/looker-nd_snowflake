@@ -21,3 +21,5 @@ include: "*.dashboard.lookml"  # include all dashboards in this project
 explore: t8002_contentview {}
 
 explore: t8001_user_crossref {}
+
+explore: t3016_seg_agg_cid_day {}
