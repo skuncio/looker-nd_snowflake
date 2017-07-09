@@ -1,5 +1,5 @@
 view: t3016_seg_agg_cid_day {
-  sql_table_name: ND_MET.public.t3016_seg_agg_cid_day ;;
+  sql_table_name: PUBLIC.t3016_seg_agg_cid_day ;;
 
   dimension: c3016_action {
     type: string
