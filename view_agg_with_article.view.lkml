@@ -32,7 +32,7 @@ view: view_agg_with_article {
       ORDER BY 1,2,3,4,5 ASC
        ;;
 #    sql_trigger_value: SELECT 1 ;;
-    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from convert_timezone('HKT',CURRENT_DATE())) - 60*60*4)/(60*60*24)) ;;
+    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from convert_timezone('Hongkong',CURRENT_DATE())) - 60*60*4)/(60*60*24)) ;;
 
   }
 
