@@ -1,7 +1,7 @@
 connection: "nd_snowflake"
 
 # include all the views
-include: "*.view"
+include: "t*.view"
 
 # include all the dashboards
 include: "*.dashboard"
