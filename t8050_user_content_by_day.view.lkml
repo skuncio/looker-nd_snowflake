@@ -155,10 +155,14 @@ view: t8050_user_content_by_day {
     sql: ${c8050_total_video_views} ;;
   }
 
-  measure: average_duration {
+  measure: average_video_duration {
     type: average
     value_format: "#,##0"
     sql: ${c8050_average_duration} ;;
+    filters: {
+      field: view_type
+      value: "VIDEOVIEW"
+    }
   }
 
   measure: distinct_users {
