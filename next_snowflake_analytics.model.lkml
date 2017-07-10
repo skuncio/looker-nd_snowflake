@@ -108,3 +108,29 @@ explore: t8001_user_crossref {}
 explore: t8000_content {}
 
 #explore: t3016_seg_agg_cid_day {}
+
+explore: t1025_reg_prod_cid_title {}
+
+explore: t4006_dashboard_rt_hour {}
+
+explore: t4007_dashboard_yesterday {}
+
+explore: contentview_us_can {}
+
+explore: t8014_user_campaign {}
+
+explore: t8020_user_content_preference {}
+
+explore: t8021_user_churning_prediction {}
+
+explore: t8023_user_segments {}
+
+explore: t8024_content_preference_control {}
+
+explore: t8025_user_gender_prediction {}
+
+explore: t8026_user_age_prediction {}
+
+#explore: t8050_user_content_by_day {}
+
+#explore: view_agg_with_article {}
