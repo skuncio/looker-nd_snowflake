@@ -23,8 +23,41 @@ explore: t3016_seg_agg_cid_day {
   view_label: "CID Views"
 }
 
+explore: view_agg_with_article {
+  label: "2) Content Summary by CID (2 mths by day) - Snowflake"
+  view_label: "Article & Video Views - Summary "
+  join: t1025_reg_prod_cid_title_join {
+    view_label: "Content Title"
+    sql_on: c8002_cid  = ${t1025_reg_prod_cid_title_join.c1025_cid} and c8002_product = ${t1025_reg_prod_cid_title_join.c1025_product} and c8002_region = ${t1025_reg_prod_cid_title_join.c1025_region} and ${view_agg_with_article.view_type} = ${t1025_reg_prod_cid_title_join.imp_type}  ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+  #      - join: t1021_cid_title_day
+  #        view_label: Animated Title
+  #        sql_on: c8002_cid = ${t1021_cid_title_day.c1021_cid} and ${t1021_cid_title_day.c1021_imp_type} = 'V' and c8002_region = ${t1021_cid_title_day.c1021_region} and c8002_product = ${t1021_cid_title_day.c1021_product}
+  #        relationship: many_to_one
+  #        type: left_outer
+  #      - join: t4003_animated_cid
+  #        view_label: Animated Indicator (preaug16)
+  #        sql_on: c8002_cid = ${t4003_animated_cid.c4003_cid} and ${t4003_animated_cid.c4003_imp_type} = 'V'
+  #        relationship: many_to_one
+  #        type: left_outer
+  #      - join: t1016_cid_title
+  #        view_label: Most Used Title
+  #        sql_on: c8002_cid = ${t1016_cid_title.c1016_cid} and ${t1016_cid_title.c1016_imp_type} = 'V'
+  #        relationship: many_to_one
+  #        type: left_outer
+  join: content {
+    view_label: "Content Object Meta Data"
+    sql_on: c8002_cid = ${content.cid} and c8002_region = ${content.region} and c8002_product = ${content.product} and ${content.video_length} > 0 ;;
+    relationship: many_to_one
+    type: left_outer
+  }
+}
+
+
 explore: contentview {
-  label: "3) Content Views Detail (2 mths by time)"
+  label: "3) Content Views Detail (2 mths by time) - Snowflake"
   view_label: "All Content Views"
 
   join: content {
