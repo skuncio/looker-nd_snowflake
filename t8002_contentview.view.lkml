@@ -403,6 +403,16 @@ view: contentview {
     }
   }
 
+  measure: average_page_duration {
+    type: average
+    sql: ${video_duration} ;;
+    filters: {
+      field: view_type
+      value: "PAGEVIEW"
+    }
+  }
+
+
   measure: distinct_users {
     view_label: "User"
     type: count_distinct
