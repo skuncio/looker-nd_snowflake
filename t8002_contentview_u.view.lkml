@@ -110,7 +110,7 @@ view: t8002_contentview {
     type: time
     timeframes: [
       time,
-      date,
+#      date,
       week,
       month,
       year,
