@@ -1,7 +1,10 @@
 connection: "nd_snowflake"
 
 # include all the views
-include: "t*.view"
+#include: "*.view"
+include: "t8002_contentview_u.view"
+include: "t8001_user_crossref.view"
+include: "t4007_dashboard_yesterday.view"
 
 # include all the dashboards
 include: "*.dashboard"
