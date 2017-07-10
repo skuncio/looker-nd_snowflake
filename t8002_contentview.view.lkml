@@ -112,7 +112,7 @@ view: contentview {
     type: time
     timeframes: [
       time,
-      date,
+#      date,
       week,
       month,
       year,
