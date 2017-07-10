@@ -24,7 +24,7 @@ view: view_agg_with_article {
       COUNT(CASE WHEN (contentview.c8002_action = 'PAGEVIEW') THEN 1 ELSE NULL END) AS total_page_views,
       COUNT(CASE WHEN (contentview.c8002_action = 'VIDEOVIEW') THEN 1 ELSE NULL END) AS total_video_views,
       AVG(CASE WHEN (contentview.c8002_action = 'VIDEOVIEW')
-      THEN contentview.c8002_video_duration ELSE NULL END ) AS average_video_duration
+      THEN contentview.c8002_video_duration ELSE NULL END ) AS average_video_duration,
       AVG(CASE WHEN (contentview.c8002_action = 'PAGEVIEW')
       THEN contentview.c8002_video_duration ELSE NULL END ) AS average_page_duration
       FROM public.t8002_contentview AS contentview
