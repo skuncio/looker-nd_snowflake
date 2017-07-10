@@ -69,7 +69,7 @@ explore: contentview {
 }
 
 explore: t8050_user_content_by_day {
-  label: "6) Content Summary by Users (2 mths by day)."
+  label: "4) Content Summary by Users (2 mths by day)."
   view_label: "Content & Users"
   join: t1025_reg_prod_cid_title_join {
     view_label: "Content Title"
