@@ -122,6 +122,11 @@ view: contentview {
     sql: ${TABLE}.c8002_datetime ;;
   }
 
+  dimension: date_viewed {
+    group_label: "view"
+    sql: TO_DATE(${TABLE}.c8002_datetime) ;;
+  }
+
   dimension: dcc_id {
     view_label: "Location"
     type: string
