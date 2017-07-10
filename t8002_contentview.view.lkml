@@ -123,6 +123,7 @@ view: contentview {
   }
 
   dimension: date_viewed {
+    alias: [view_date]
     group_label: "view"
     sql: TO_DATE(${TABLE}.c8002_datetime) ;;
   }
