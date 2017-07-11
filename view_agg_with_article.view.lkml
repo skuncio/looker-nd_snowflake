@@ -179,28 +179,28 @@ view: view_agg_with_article {
     sql: ${video_views} ;;
   }
 
-#  dimension: avg_video_duration {
-#    hidden: yes
-#    type: number
-#    sql: ${TABLE}.average_video_duration ;;
-#  }
-
-  measure: average_video_duration {
+  dimension: avg_video_duration {
+    hidden: yes
     type: number
-    value_format: "#,##0"
     sql: ${TABLE}.average_video_duration ;;
   }
 
-#  dimension: avg_page_duration {
-#    hidden: yes
-#    type: number
-#    sql: ${TABLE}.average_page_duration ;;
-#  }
+  measure: average_video_duration {
+    type: average
+    value_format: "#,##0"
+    sql: ${avg_video_duration} ;;
+  }
+
+  dimension: avg_page_duration {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.average_page_duration ;;
+  }
 
   measure: average_page_duration {
-    type: number
+    type: average
     value_format: "#,##0"
-    sql: ${TABLE}.average_page_duration ;;
+    sql: ${avg_page_duration} ;;
   }
 
   measure: count {
