@@ -47,13 +47,13 @@ view: t8050_user_content_by_day {
   }
 
   dimension: c8050_average_video_duration {
-    hidden: yes
+#    hidden: yes
     type: number
     sql: ${TABLE}.c8050_average_video_duration ;;
   }
 
   dimension: c8050_average_page_duration {
-    hidden: yes
+#    hidden: yes
     type: number
     sql: ${TABLE}.c8050_average_page_duration ;;
   }
@@ -155,13 +155,13 @@ view: t8050_user_content_by_day {
   }
 
   measure: average_page_duration {
-    type: number
+    type: average
     value_format: "#,##0"
     sql: ${c8050_average_page_duration} ;;
-#    filters: {
-#      field: view_type
-#      value: "PAGEVIEW"
-#    }
+    filters: {
+      field: view_type
+      value: "PAGEVIEW"
+    }
   }
 
   measure: total_video_views {
@@ -172,13 +172,13 @@ view: t8050_user_content_by_day {
   }
 
   measure: average_video_duration {
-    type: number
+    type: average
     value_format: "#,##0"
     sql: ${c8050_average_video_duration} ;;
-#    filters: {
-#      field: view_type
-#      value: "VIDEOVIEW"
-#    }
+    filters: {
+      field: view_type
+      value: "VIDEOVIEW"
+    }
   }
 
   measure: distinct_users {
