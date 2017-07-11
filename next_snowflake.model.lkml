@@ -16,6 +16,7 @@ explore: t8001_user_crossref {}
 
 explore: t4007_dashboard_yesterday {}
 
+explore: pdt_view_agg_with_article {}
 
 # - explore: t1025_reg_prod_cid_title
 
