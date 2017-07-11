@@ -24,15 +24,15 @@ view: view_agg_with_article {
       COUNT(CASE WHEN (contentview.c8002_action = 'PAGEVIEW') THEN 1 ELSE NULL END) AS total_page_views,
       COUNT(CASE WHEN (contentview.c8002_action = 'VIDEOVIEW') THEN 1 ELSE NULL END) AS total_video_views,
       AVG(CASE WHEN (contentview.c8002_action = 'VIDEOVIEW')
-      THEN contentview.c8002_video_duration ELSE NULL END ) AS average_video_duration,
+      THEN contentview.c8002_view_duration ELSE NULL END ) AS average_video_duration,
       AVG(CASE WHEN (contentview.c8002_action = 'PAGEVIEW')
-      THEN contentview.c8002_video_duration ELSE NULL END ) AS average_page_duration
+      THEN contentview.c8002_view_duration ELSE NULL END ) AS average_page_duration
       FROM public.t8002_contentview AS contentview
       GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
       ORDER BY 1,2,3,4,5 ASC
        ;;
 #    sql_trigger_value: SELECT 1 ;;
-    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from convert_timezone('Hongkong',CURRENT_DATE())) - 60*60*4)/(60*60*24)) ;;
+    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from convert_timezone('Hongkong',CURRENT_DATE())) - 60*60*1)/(60*60*24)) ;;
 
   }
 
@@ -179,28 +179,28 @@ view: view_agg_with_article {
     sql: ${video_views} ;;
   }
 
-  dimension: avg_video_duration {
-    hidden: yes
+#  dimension: avg_video_duration {
+#    hidden: yes
+#    type: number
+#    sql: ${TABLE}.average_video_duration ;;
+#  }
+
+  measure: average_video_duration {
     type: number
+    value_format: "#,##0"
     sql: ${TABLE}.average_video_duration ;;
   }
 
-  measure: average_video_duration {
-    type: average
-    value_format: "#,##0"
-    sql: ${avg_video_duration} ;;
-  }
+#  dimension: avg_page_duration {
+#    hidden: yes
+#    type: number
+#    sql: ${TABLE}.average_page_duration ;;
+#  }
 
-  dimension: avg_page_duration {
-    hidden: yes
+  measure: average_page_duration {
     type: number
-    sql: ${TABLE}.average_page_duration ;;
-  }
-
-  measure: average_Page_duration {
-    type: average
     value_format: "#,##0"
-    sql: ${avg_page_duration} ;;
+    sql: ${TABLE}.average_page_duration ;;
   }
 
   measure: count {

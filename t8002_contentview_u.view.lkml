@@ -325,9 +325,10 @@ view: t8002_contentview {
     sql: ${TABLE}.C8002_UA ;;
   }
 
-  dimension: c8002_video_duration {
+  dimension: c8002_view_duration {
+    alias: [c8002_video_duration]
     type: number
-    sql: ${TABLE}.C8002_VIDEO_DURATION ;;
+    sql: ${TABLE}.C8002_VIEW_DURATION ;;
   }
 
   dimension: c8002_wifi {
@@ -369,18 +370,18 @@ view: t8002_contentview {
 
   measure: average_duration {
     type: average
-    sql: ${c8002_video_duration} ;;
+    sql: ${c8002_view_duration} ;;
   }
 
   measure: sum_duration {
     type: sum
-    sql: ${c8002_video_duration} ;;
+    sql: ${c8002_view_duration} ;;
   }
 
   measure: average_video_duration {
 #    alias: [average_duration]
     type: average
-    sql: ${c8002_video_duration} ;;
+    sql: ${c8002_view_duration} ;;
     filters: {
       field: c8002_action
       value: "VIDEOVIEW"
@@ -390,7 +391,7 @@ view: t8002_contentview {
   measure: sum_video_duration {
 #    alias: [average_duration]
     type: sum
-    sql: ${c8002_video_duration} ;;
+    sql: ${c8002_view_duration} ;;
     filters: {
       field: c8002_action
       value: "VIDEOVIEW"
@@ -399,7 +400,7 @@ view: t8002_contentview {
 
   measure: average_page_duration {
     type: average
-    sql: ${c8002_video_duration} ;;
+    sql: ${c8002_view_duration} ;;
     filters: {
       field: c8002_action
       value: "PAGEVIEW"
@@ -408,7 +409,7 @@ view: t8002_contentview {
 
   measure: sum_page_duration {
     type: sum
-    sql: ${c8002_video_duration} ;;
+    sql: ${c8002_view_duration} ;;
     filters: {
       field: c8002_action
       value: "PAGEVIEW"

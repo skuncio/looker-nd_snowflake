@@ -46,10 +46,16 @@ view: t8050_user_content_by_day {
     sql: ${TABLE}.c8050_auto ;;
   }
 
-  dimension: c8050_average_duration {
+  dimension: c8050_average_video_duration {
     hidden: yes
     type: number
-    sql: ${TABLE}.c8050_average_duration ;;
+    sql: ${TABLE}.c8050_average_video_duration ;;
+  }
+
+  dimension: c8050_average_page_duration {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.c8050_average_page_duration ;;
   }
 
   dimension: category {
@@ -148,6 +154,16 @@ view: t8050_user_content_by_day {
     sql: ${c8050_total_page_views} ;;
   }
 
+  measure: average_page_duration {
+    type: number
+    value_format: "#,##0"
+    sql: ${c8050_average_page_duration} ;;
+#    filters: {
+#      field: view_type
+#      value: "PAGEVIEW"
+#    }
+  }
+
   measure: total_video_views {
     type: sum
     #value_format: '#,##0'
@@ -156,13 +172,13 @@ view: t8050_user_content_by_day {
   }
 
   measure: average_video_duration {
-    type: average
+    type: number
     value_format: "#,##0"
-    sql: ${c8050_average_duration} ;;
-    filters: {
-      field: view_type
-      value: "VIDEOVIEW"
-    }
+    sql: ${c8050_average_video_duration} ;;
+#    filters: {
+#      field: view_type
+#      value: "VIDEOVIEW"
+#    }
   }
 
   measure: distinct_users {

@@ -122,7 +122,7 @@ view: contentview {
     sql: ${TABLE}.c8002_datetime ;;
   }
 
-  dimension: date_viewed {
+  dimension: view_date {
     alias: [view_date]
     group_label: "view"
     sql: TO_DATE(${TABLE}.c8002_datetime) ;;
@@ -330,9 +330,10 @@ view: contentview {
     sql: ${TABLE}.c8002_ua ;;
   }
 
-  dimension: video_duration {
+  dimension: view_duration {
+    alias: [video_duration]
     type: number
-    sql: ${TABLE}.c8002_video_duration ;;
+    sql: ${TABLE}.c8002_view_duration ;;
   }
 
   dimension: wifi {
@@ -397,7 +398,7 @@ view: contentview {
   measure: average_video_duration {
     alias: [average_duration]
     type: average
-    sql: ${video_duration} ;;
+    sql: ${view_duration} ;;
     filters: {
       field: view_type
       value: "VIDEOVIEW"
@@ -406,7 +407,7 @@ view: contentview {
 
   measure: average_page_duration {
     type: average
-    sql: ${video_duration} ;;
+    sql: ${view_duration} ;;
     filters: {
       field: view_type
       value: "PAGEVIEW"
