@@ -31,7 +31,7 @@ view: view_agg_with_article {
       GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
       ORDER BY 1,2,3,4,5 ASC
        ;;
-    sql_trigger_value: SELECT 2 ;;
+    sql_trigger_value: SELECT 3 ;;
 #    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from convert_timezone('Hongkong',CURRENT_DATE())) - 60*60*1)/(60*60*24)) ;;
 
   }
