@@ -46,9 +46,19 @@ view: t4005_etw_event {
     sql: ${TABLE}.C4005_ECAT ;;
   }
 
-  dimension: c4005_edate {
-    type: string
-    sql: ${TABLE}.C4005_EDATE ;;
+  dimension_group: c4005_edate {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      hour_of_day
+    ]
+    sql: ${TABLE}.c4005_edate ;;
   }
 
   dimension: c4005_elabel {
