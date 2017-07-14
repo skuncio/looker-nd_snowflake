@@ -1,15 +1,30 @@
 view: t4006_dashboard_rt_hour {
   sql_table_name: PUBLIC.T4006_DASHBOARD_RT_HOUR ;;
 
+  dimension_group: c4006_datetime {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year,
+      hour_of_day
+    ]
+    sql: ${TABLE}.c4006_datetime ;;
+  }
+
   dimension: c4006_content {
     type: string
     sql: ${TABLE}.C4006_CONTENT ;;
   }
 
-  dimension: c4006_datetime {
-    type: string
-    sql: ${TABLE}.C4006_DATETIME ;;
-  }
+#  dimension: c4006_datetime {
+#    type: string
+#    sql: ${TABLE}.C4006_DATETIME ;;
+#  }
 
   dimension: c4006_imp_type {
     type: string
@@ -30,6 +45,15 @@ view: t4006_dashboard_rt_hour {
     type: number
     sql: ${TABLE}.C4006_VIEW_COUNT ;;
   }
+
+  measure: Impression_Sum {
+    type: sum
+    value_format: "#,##0"
+    #value_format: "[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0"
+    sql: ${c4006_view_count} ;;
+  }
+
+
 
   measure: count {
     type: count
