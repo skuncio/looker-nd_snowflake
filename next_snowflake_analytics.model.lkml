@@ -133,6 +133,8 @@ explore: t8026_user_age_prediction {}
 
 explore: t4005_etw_event {}
 
+explore: t8050_user_content_by_day_gen {}
+
 #explore: t8050_user_content_by_day {}
 
 #explore: view_agg_with_article {}
