@@ -1,179 +1,218 @@
 view: pdt_view_agg_with_article {
-  sql_table_name: LOOKER_SCRATCH.LR$XWHX2ZBRH27IYRW4YORB_view_agg_with_article ;;
+  derived_table: {
+    sql: SELECT
+      TO_DATE(contentview.c8002_datetime )  as c8002_datetime,
+      contentview.c8002_product ,
+      contentview.c8002_region ,
+      contentview.c8002_platform ,
+      contentview.c8002_source ,
+      contentview.c8002_app_version,
+      contentview.c8002_category,
+      contentview.c8002_channel,
+      contentview.c8002_section ,
+      contentview.c8002_issueid,
+      contentview.c8002_news ,
+      contentview.c8002_content,
+      contentview.c8002_edm,
+      contentview.c8002_action,
+      contentview.c8002_cid ,
+      contentview.c8002_artid,
+      contentview.c8002_title,
+      contentview.c8002_auto,
+      contentview.c8002_language ,
+      contentview.c8002_keyword ,
+      COUNT(CASE WHEN (contentview.c8002_action = 'PAGEVIEW') THEN 1 ELSE NULL END) AS total_page_views,
+      COUNT(CASE WHEN (contentview.c8002_action = 'VIDEOVIEW') THEN 1 ELSE NULL END) AS total_video_views,
+      AVG(CASE WHEN (contentview.c8002_action = 'VIDEOVIEW')
+      THEN contentview.c8002_view_duration ELSE NULL END ) AS average_video_duration,
+      AVG(CASE WHEN (contentview.c8002_action = 'PAGEVIEW')
+      THEN contentview.c8002_view_duration ELSE NULL END ) AS average_page_duration
+      FROM public.t8002_contentview AS contentview
+      GROUP BY 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20
+      ORDER BY 1,2,3,4,5 ASC
+       ;;
+#    sql_trigger_value: SELECT 3 ;;
+    sql_trigger_value: SELECT FLOOR((EXTRACT(epoch from convert_timezone('Hongkong',CURRENT_DATE())) - 60*60*4)/(60*60*24)) ;;
 
-dimension: view_type {
-  description: "PAGEVIEW or VIDEOVIEW"
-  alias: [action]
-  type: string
-  sql: ${TABLE}.c8002_action ;;
-}
+  }
 
-dimension: app_version {
-  type: string
-  sql: ${TABLE}.c8002_app_version ;;
-}
+  #  - dimension: browser
+  #    type: string
+  #    sql: ${TABLE}.c8002_br
 
-dimension: artid {
-  type: string
-  sql: ${TABLE}.c8002_artid ;;
-}
+  dimension: view_type {
+    description: "PAGEVIEW or VIDEOVIEW"
+    alias: [action]
+    type: string
+    sql: ${TABLE}.c8002_action ;;
+  }
 
-dimension: auto_play {
-  type: string
-  sql: ${TABLE}.c8002_auto ;;
-}
+  dimension: app_version {
+    type: string
+    sql: ${TABLE}.c8002_app_version ;;
+  }
 
-dimension: category {
-  type: string
-  sql: ${TABLE}.c8002_category ;;
-  drill_fields: [section, product]
-}
+  dimension: artid {
+    type: string
+    sql: ${TABLE}.c8002_artid ;;
+  }
 
-dimension: channel {
-  type: string
-  sql: ${TABLE}.c8002_channel ;;
-}
+  dimension: auto_play {
+    type: string
+    sql: ${TABLE}.c8002_auto ;;
+  }
 
-dimension: content_id {
-  type: string
-  sql: ${TABLE}.c8002_cid ;;
-}
+  dimension: category {
+    type: string
+    sql: ${TABLE}.c8002_category ;;
+    drill_fields: [section, product]
+  }
 
-dimension: content_type {
-  type: string
-  sql: ${TABLE}.c8002_content ;;
-}
+  dimension: channel {
+    type: string
+    sql: ${TABLE}.c8002_channel ;;
+  }
 
-dimension_group: view {
-  type: time
-  timeframes: [time, date, week, month, year]
-  convert_tz: no
-  sql: ${TABLE}.c8002_datetime ;;
-}
+  dimension: content_id {
+    type: string
+    sql: ${TABLE}.c8002_cid ;;
+  }
 
-dimension: edm {
-  type: string
-  sql: ${TABLE}.c8002_edm ;;
-}
+  dimension: content_type {
+    type: string
+    sql: ${TABLE}.c8002_content ;;
+  }
 
-dimension: issueid {
-  type: string
-  sql: ${TABLE}.c8002_issueid ;;
-}
+  dimension_group: view {
+    type: time
+    timeframes: [time, date, week, month, year]
+    convert_tz: no
+    sql: ${TABLE}.c8002_datetime ;;
+  }
 
-dimension: keyword {
-  type: string
-  sql: ${TABLE}.c8002_keyword ;;
-}
+  dimension: edm {
+    type: string
+    sql: ${TABLE}.c8002_edm ;;
+  }
 
-dimension: language {
-  type: string
-  sql: ${TABLE}.c8002_language ;;
-}
+  dimension: issueid {
+    type: string
+    sql: ${TABLE}.c8002_issueid ;;
+  }
 
-dimension: news {
-  type: string
-  sql: ${TABLE}.c8002_news ;;
-}
+  dimension: keyword {
+    type: string
+    sql: ${TABLE}.c8002_keyword ;;
+  }
 
-dimension: platform {
-  type: string
-  sql: ${TABLE}.c8002_platform ;;
-}
+  dimension: language {
+    type: string
+    sql: ${TABLE}.c8002_language ;;
+  }
 
-dimension: product {
-  type: string
-  sql: ${TABLE}.c8002_product ;;
-  drill_fields: [section, category]
-}
+  dimension: news {
+    type: string
+    sql: ${TABLE}.c8002_news ;;
+  }
 
-dimension: region {
-  type: string
-  sql: ${TABLE}.c8002_region ;;
-}
+  dimension: platform {
+    type: string
+    sql: ${TABLE}.c8002_platform ;;
+  }
 
-dimension: section {
-  type: string
-  sql: ${TABLE}.c8002_section ;;
-  drill_fields: [product, category]
-}
+  dimension: product {
+    type: string
+    sql: ${TABLE}.c8002_product ;;
+    drill_fields: [section, category]
+  }
 
-#  - dimension: site
-#    type: string
-#    sql: ${TABLE}.c8002_site
+  dimension: region {
+    type: string
+    sql: ${TABLE}.c8002_region ;;
+  }
 
-dimension: source {
-  type: string
-  sql: ${TABLE}.c8002_source ;;
-}
+  dimension: section {
+    type: string
+    sql: ${TABLE}.c8002_section ;;
+    drill_fields: [product, category]
+  }
 
-dimension: title {
-  type: string
-  sql: ${TABLE}.c8002_title ;;
-}
+  #  - dimension: site
+  #    type: string
+  #    sql: ${TABLE}.c8002_site
 
-#### measures #############
+  dimension: source {
+    type: string
+    sql: ${TABLE}.c8002_source ;;
+  }
 
-dimension: page_views {
-  hidden: yes
-  type: number
-  sql: ${TABLE}.total_page_views ;;
-}
+  dimension: title {
+    type: string
+    sql: ${TABLE}.c8002_title ;;
+  }
 
-measure: total_page_views {
-  type: sum
-  #value_format: '#,##0'
-  value_format: "[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0"
-  sql: ${page_views} ;;
-}
+  #### measures #############
 
-dimension: video_views {
-  hidden: yes
-  type: number
-  sql: ${TABLE}.total_video_views ;;
-}
+  dimension: page_views {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_page_views ;;
+  }
 
-measure: total_video_views {
-  type: sum
-  #value_format: '#,##0'
-  value_format: "[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0"
-  sql: ${video_views} ;;
-}
+  measure: total_page_views {
+    type: sum
+    #value_format: '#,##0'
+    value_format: "[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0"
+    sql: ${page_views} ;;
+  }
 
-dimension: avg_video_duration {
-  hidden: yes
-  type: number
-  sql: ${TABLE}.average_video_duration ;;
-}
+  dimension: video_views {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.total_video_views ;;
+  }
 
-measure: average_video_duration {
-  type: average
-  value_format: "#,##0"
-  sql: ${avg_video_duration} ;;
-}
+  measure: total_video_views {
+    type: sum
+    #value_format: '#,##0'
+    value_format: "[>=1000000]0.0,,\"M\";[>=1000]0.0,\"K\";0"
+    sql: ${video_views} ;;
+  }
 
-dimension: avg_page_duration {
-  hidden: yes
-  type: number
-  sql: ${TABLE}.average_page_duration ;;
-}
+  dimension: avg_video_duration {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.average_video_duration ;;
+  }
 
-measure: average_page_duration {
-  type: average
-  value_format: "#,##0"
-  sql: ${avg_page_duration} ;;
-}
+  measure: average_video_duration {
+    type: average
+    value_format: "#,##0"
+    sql: ${avg_video_duration} ;;
+  }
 
-measure: count {
-  type: count
-  # approximate: yes
-  drill_fields: []
-}
+  dimension: avg_page_duration {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.average_page_duration ;;
+  }
 
-measure: distinct_content {
-  #    view_label: Content
-  type: count_distinct
-  sql: ${content_id} ;;
-  #approximate: yes
-}
+  measure: average_page_duration {
+    type: average
+    value_format: "#,##0"
+    sql: ${avg_page_duration} ;;
+  }
+
+  measure: count {
+    type: count
+    # approximate: yes
+    drill_fields: []
+  }
+
+  measure: distinct_content {
+    #    view_label: Content
+    type: count_distinct
+    sql: ${content_id} ;;
+    #approximate: yes
+  }
 }
