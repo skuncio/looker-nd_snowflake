@@ -8,33 +8,33 @@ view: t8050_user_content_by_day {
     sql: ${TABLE}.c8050_action ;;
   }
 
-  dimension: content_type {
-    type: string
+#  dimension: content_type {
+#    type: string
     #   hidden: yes
-    #   sql: ${TABLE}.c80505_action ;;
+#    sql: ${TABLE}.c80505_action ;;
 
-    case: {
-      when: {
-        sql: (${TABLE}.c8050_cid is null) or (${TABLE}.c8050_cid = 0)  ;;
-        label: "HOME-INDEX"
-      }
+#    case: {
+#      when: {
+#        sql: (${TABLE}.c8050_cid is null) or (${TABLE}.c8050_cid = 0)  ;;
+#        label: "HOME-INDEX"
+#      }
 
-      when: {
-        sql: (${TABLE}.c8050_action = 'PAGEVIEW') and (${TABLE}.c8050_cid is not null)  ;;
-        label: "ARTICLE"
-      }
+#      when: {
+#        sql: (${TABLE}.c8050_action = 'PAGEVIEW') and (${TABLE}.c8050_cid is not null)  ;;
+#        label: "ARTICLE"
+#      }
 
-      when: {
-        sql: (${TABLE}.c8050_action = 'VIDEOVIEW') and (${TABLE}.c8050_cid is not null) ;;
-        label: "VIDEO"
-      }
+#      when: {
+#        sql: (${TABLE}.c8050_action = 'VIDEOVIEW') and (${TABLE}.c8050_cid is not null) ;;
+#        label: "VIDEO"
+#      }
 
-      when: {
-        sql: true ;;
-        label: "unknown"
-      }
-    }
-  }
+#      when: {
+#        sql: true ;;
+#        label: "unknown"
+#      }
+#    }
+#  }
 
   dimension: app_version {
     type: string
@@ -72,6 +72,11 @@ view: t8050_user_content_by_day {
     type: string
     sql: ${TABLE}.c8050_cid ;;
   }
+
+dimension: content_type {
+  type: string
+  sql: ${TABLE}.C8050_CONTENT ;;
+}
 
   dimension_group: view {
     type: time
