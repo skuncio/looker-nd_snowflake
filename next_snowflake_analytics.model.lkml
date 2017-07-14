@@ -1,7 +1,8 @@
 connection: "nd_snowflake_analytics"
 
-include: "*.view.lkml"         # include all views in this project
+include: "t*.view.lkml"         # include all views in this project
 include: "*.dashboard.lookml"  # include all dashboards in this project
+include: "pdt_view_agg_with_article.view"
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
@@ -23,12 +24,12 @@ explore: t3016_seg_agg_cid_day {
   view_label: "CID Views"
 }
 
-explore: view_agg_with_article {
+explore: pdt_view_agg_with_article {
   label: "2) Content Summary by CID (2 mths by day) - Snowflake"
   view_label: "Article & Video Views - Summary "
   join: t1025_reg_prod_cid_title_join {
     view_label: "Content Title"
-    sql_on: c8002_cid  = ${t1025_reg_prod_cid_title_join.c1025_cid} and c8002_product = ${t1025_reg_prod_cid_title_join.c1025_product} and c8002_region = ${t1025_reg_prod_cid_title_join.c1025_region} and ${view_agg_with_article.view_type} = ${t1025_reg_prod_cid_title_join.imp_type}  ;;
+    sql_on: c8002_cid  = ${t1025_reg_prod_cid_title_join.c1025_cid} and c8002_product = ${t1025_reg_prod_cid_title_join.c1025_product} and c8002_region = ${t1025_reg_prod_cid_title_join.c1025_region} and ${pdt_view_agg_with_article.view_type} = ${t1025_reg_prod_cid_title_join.imp_type}  ;;
     relationship: many_to_one
     type: left_outer
   }
