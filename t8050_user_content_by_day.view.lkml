@@ -92,6 +92,11 @@ dimension: content_type {
     sql: ${TABLE}.c8050_datetime ;;
   }
 
+  dimension: date_viewed {
+    group_label: "view"
+    sql: ${TABLE}.c8050_datetime ;;
+  }
+
   dimension: news {
     type: string
     sql: ${TABLE}.c8050_news ;;
