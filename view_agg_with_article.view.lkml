@@ -170,7 +170,7 @@ measure: sum_page_views {
 
 measure: weighted_page_duration {
   type: number
-  value_format: "#,##0"
+  value_format: "#,##0.00"
   sql: ${sum_page_duration} / ${sum_page_views} ;;
 }
 
