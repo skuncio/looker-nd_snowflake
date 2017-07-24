@@ -1,5 +1,5 @@
 view: view_agg_with_article {
-  sql_table_name: LOOKER_SCRATCH.LR$XWDGL73VCBGUI0UTOAU0B_pdt_view_agg_with_article ;;
+  sql_table_name: LOOKER_SCRATCH.LR$XWFJLUIT9XOEN7W0DL6SE_pdt_view_agg_with_article ;;
 
 dimension: view_type {
   description: "PAGEVIEW or VIDEOVIEW"
@@ -115,7 +115,7 @@ dimension: title {
 #### measures #############
 
 dimension: page_views {
-  hidden: yes
+#  hidden: yes
   type: number
   sql: ${TABLE}.total_page_views ;;
 }
@@ -153,7 +153,7 @@ measure: average_video_duration {
 }
 
 dimension: avg_page_duration {
-  hidden: yes
+#  hidden: yes
   type: number
   sql: ${TABLE}.average_page_duration ;;
 }
