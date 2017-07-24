@@ -161,7 +161,7 @@ dimension: avg_page_duration {
 measure: average_page_duration {
   type: number
   value_format: "#,##0"
-  sql: (${avg_page_duration})/ ($(${count}/${page_views}) ;;
+  sql: ${avg_page_duration} / ($(${count} / ${page_views}) ;;
 }
 
 measure: count {
