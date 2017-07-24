@@ -158,10 +158,20 @@ dimension: avg_page_duration {
   sql: ${TABLE}.average_page_duration ;;
 }
 
+measure: sum_page_duration {
+  type: sum
+  sql: ${avg_page_duration} * ${page_views} ;;
+}
+
+measure: sum_page_views {
+  type: sum
+  sql: ${page_views} ;;
+}
+
 measure: weighted_page_duration {
   type: number
   value_format: "#,##0"
-  sql: (${avg_page_duration} * ${page_views}) / ${page_views} ;;
+  sql: (${sum_page_duration} / ${sum_page_views} ;;
 }
 
 measure: count {
