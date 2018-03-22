@@ -3,7 +3,7 @@ view: t8025_user_gender_prediction {
 
   dimension: c8025_confidence {
     type: number
-    sql: ${TABLE}.C8025_CONFIDENCE ;;
+    sql: ${TABLE}.SCORE ;;
   }
 
   dimension: c8025_gender {
